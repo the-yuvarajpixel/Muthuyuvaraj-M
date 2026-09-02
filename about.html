@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — UMS Groups</title>
+<meta name="description" content="UMS Groups is a structural and civil engineering firm built by engineers who also run the construction crews.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">UMS <span>Groups</span></a>
+    <nav class="primary" id="primaryNav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="current">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+  </div>
+</header>
+
+<section class="blueprint page-hero">
+  <div class="wrap">
+    <p class="eyebrow">About UMS Groups</p>
+    <h1>Engineers who stayed on site.</h1>
+    <p class="lede">UMS Groups started as a two-person structural design practice. We kept the same standard as we grew into a full engineering and construction firm: nobody signs off on a drawing they wouldn't stand under.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <h2>How we got here</h2>
+      <p>UMS Groups was founded by structural engineers who were tired of watching good designs get compromised on site by contractors chasing schedule. So we built our own construction and fabrication teams to work alongside the design office — the same people who size a beam are in the room when it's time to decide how it actually gets erected.</p>
+      <p>Almost two decades later, that's still the model. We take on structural engineering, civil construction and industrial fabrication work for clients who need a single firm to own the outcome, not just a set of stamped drawings.</p>
+    </div>
+    <div class="panel">
+      <h3 style="margin-bottom:18px;">At a glance</h3>
+      <div class="row-list" style="border-top:none;">
+        <div class="row" style="grid-template-columns:1fr 1fr;padding:14px 0;">
+          <h3 style="font-size:0.9rem;color:var(--slate);font-family:var(--font-mono);font-weight:500;">Founded</h3>
+          <p style="margin:0;">18 years in operation</p>
+        </div>
+        <div class="row" style="grid-template-columns:1fr 1fr;padding:14px 0;">
+          <h3 style="font-size:0.9rem;color:var(--slate);font-family:var(--font-mono);font-weight:500;">Focus</h3>
+          <p style="margin:0;">Structural, civil, industrial</p>
+        </div>
+        <div class="row" style="grid-template-columns:1fr 1fr;padding:14px 0;">
+          <h3 style="font-size:0.9rem;color:var(--slate);font-family:var(--font-mono);font-weight:500;">Delivery</h3>
+          <p style="margin:0;">In-house design, build &amp; fabrication</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-dim">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What guides the work</h2>
+      <span class="index mono">principles</span>
+    </div>
+    <div class="row-list">
+      <div class="row">
+        <h3>Build what you'd stand under</h3>
+        <p>Every design is signed off by an engineer who is accountable for it on site, not just on paper.</p>
+      </div>
+      <div class="row">
+        <h3>One firm, one accountability</h3>
+        <p>Design, procurement and construction sit under the same roof, so there's no finger-pointing between contractor and consultant when something needs a decision.</p>
+      </div>
+      <div class="row">
+        <h3>Say the schedule you mean</h3>
+        <p>We quote dates we can hold to, and we tell you early if something on our end is going to move them.</p>
+      </div>
+      <div class="row">
+        <h3>Safety is a line item, not a slogan</h3>
+        <p>Site safety is planned and budgeted into every project the same way materials and labour are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blueprint cta-band">
+  <div class="wrap">
+    <h2>Want to know if we're a fit for your project?</h2>
+    <a href="contact.html" class="btn btn-primary">Get in touch</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand">UMS <span style="color:#B8863B;">Groups</span></div>
+        <p>Structural engineering, civil construction and industrial fabrication.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@umsgroups.com">info@umsgroups.com</a></li>
+          <li><a href="tel:+910000000000">+91 00000 00000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 UMS Groups. All rights reserved.</span>
+      <span>Drawing no. UMS-WEB-02</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('primaryNav');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+</script>
+
+</body>
+</html>
