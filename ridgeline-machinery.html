@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridgeline Machinery Co. — The crew behind every load</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root{
+    --ink: #21201d;
+    --graphite: #2c2b28;
+    --steel: #5c6266;
+    --steel-light: #9aa0a2;
+    --concrete: #ece8e0;
+    --concrete-dark: #ddd7c9;
+    --plate: #f4f1e9;
+    --orange: #e1600c;
+    --orange-dark: #b84c09;
+    --rust: #7a3b2e;
+    --line: rgba(33,32,29,0.16);
+    --line-strong: rgba(33,32,29,0.35);
+    --radius: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin: 0;
+    background: var(--concrete);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  h1,h2,h3{
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  a{ color: inherit; }
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top: 0; z-index: 50;
+    background: var(--ink);
+    border-bottom: 3px solid var(--orange);
+  }
+  .header-inner{
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px;
+    max-width: 1180px; margin: 0 auto;
+  }
+  .brand{
+    display: flex; align-items: center; gap: 10px;
+    color: var(--plate);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+  .brand-mark{
+    width: 30px; height: 30px;
+    border: 2px solid var(--orange);
+    display: grid; place-items: center;
+    color: var(--orange);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 0.75rem;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .brand-mark span{ transform: rotate(-45deg); }
+  nav{ display: flex; gap: 28px; }
+  nav a{
+    color: var(--steel-light);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+  nav a:hover, nav a:focus-visible{ color: var(--plate); }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+  }
+  .nav-toggle{ display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background: var(--ink);
+    color: var(--plate);
+    padding: 84px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .kicker-tag{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    padding: 5px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 26px;
+    opacity: 0;
+    animation: settle 0.6s ease-out 0.05s forwards;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 4.6vw, 4rem);
+    line-height: 1.04;
+    font-weight: 600;
+    color: var(--plate);
+    max-width: 12ch;
+    opacity: 0;
+    animation: settle 0.7s ease-out 0.15s forwards;
+  }
+  .hero p.lede{
+    margin-top: 26px;
+    max-width: 46ch;
+    color: var(--steel-light);
+    font-size: 1.08rem;
+    opacity: 0;
+    animation: settle 0.7s ease-out 0.3s forwards;
+  }
+  .hero-ctas{
+    margin-top: 36px;
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0;
+    animation: settle 0.7s ease-out 0.42s forwards;
+  }
+  @keyframes settle{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .btn{
+    display: inline-block;
+    padding: 13px 26px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary{
+    background: var(--orange);
+    color: var(--ink);
+    border: 1px solid var(--orange);
+  }
+  .btn-primary:hover{ background: var(--orange-dark); border-color: var(--orange-dark); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--plate);
+    border: 1px solid var(--steel);
+  }
+  .btn-ghost:hover{ border-color: var(--plate); }
+
+  /* Work-order roster card in hero */
+  .roster{
+    background: var(--plate);
+    color: var(--ink);
+    border: 1px solid var(--line-strong);
+    opacity: 0;
+    animation: settle 0.7s ease-out 0.55s forwards;
+  }
+  .roster-head{
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line-strong);
+    background: var(--concrete-dark);
+  }
+  .roster-head .mono{ font-size: 0.7rem; color: var(--steel); }
+  .roster-title{ font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.95rem; }
+  .roster-row{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+    align-items: center;
+  }
+  .roster-row:last-child{ border-bottom: none; }
+  .roster-row .id{ font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--steel); }
+  .roster-row .role{ color: var(--steel); font-size: 0.82rem; }
+  .roster-row .yrs{ font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--rust); white-space: nowrap; }
+
+  /* ---------- Section shared ---------- */
+  section{ padding: 88px 0; }
+  .section-head{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 22px;
+  }
+  .section-num{
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--orange);
+    font-size: 0.85rem;
+  }
+  .section-head h2{
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 600;
+  }
+  .section-intro{
+    max-width: 58ch;
+    color: var(--steel);
+    justify-self: end;
+    text-align: left;
+    font-size: 0.98rem;
+  }
+  @media (max-width: 720px){
+    .section-head{ grid-template-columns: 1fr; }
+    .section-intro{ justify-self: start; }
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .about-copy p{ color: var(--graphite); max-width: 52ch; }
+  .about-copy p + p{ margin-top: 16px; }
+  .stat-plate{
+    border: 1px solid var(--line-strong);
+    background: var(--plate);
+    padding: 22px 24px;
+  }
+  .stat-plate + .stat-plate{ border-top: none; }
+  .stat-row{ display: flex; align-items: baseline; justify-content: space-between; }
+  .stat-num{ font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 600; color: var(--ink); }
+  .stat-label{ color: var(--steel); font-size: 0.85rem; max-width: 22ch; text-align: right; }
+
+  /* ---------- Team plates ---------- */
+  .team-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line-strong);
+    border: 1px solid var(--line-strong);
+  }
+  .plate-card{
+    background: var(--plate);
+    padding: 26px 24px 24px;
+    position: relative;
+  }
+  .plate-card::before, .plate-card::after{
+    content: '';
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--steel-light);
+    top: 12px;
+  }
+  .plate-card::before{ left: 12px; }
+  .plate-card::after{ right: 12px; }
+  .plate-id{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--orange-dark);
+    margin-bottom: 10px;
+  }
+  .plate-name{ font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1.15rem; }
+  .plate-role{ color: var(--steel); font-size: 0.86rem; margin-top: 3px; }
+  .plate-quote{
+    margin-top: 16px;
+    font-size: 0.92rem;
+    color: var(--graphite);
+    border-left: 2px solid var(--orange);
+    padding-left: 12px;
+  }
+  .plate-meta{
+    margin-top: 18px;
+    display: flex; gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--steel);
+  }
+  @media (max-width: 900px){ .team-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px){ .team-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- Fleet spec table ---------- */
+  .spec-table{ width: 100%; border-collapse: collapse; }
+  .spec-table th{
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 0.72rem;
+    color: var(--steel);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .spec-table td{
+    padding: 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  .spec-table td.equip{ font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 1.02rem; }
+  .spec-table td.num{ font-family: 'IBM Plex Mono', monospace; color: var(--rust); }
+  .spec-table tr:hover td{ background: var(--plate); }
+
+  /* ---------- Careers CTA ---------- */
+  .careers{
+    background: var(--ink);
+    color: var(--plate);
+    padding: 80px 0;
+  }
+  .careers-grid{
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .careers h2{ color: var(--plate); font-size: clamp(1.8rem, 3.4vw, 2.6rem); max-width: 14ch; }
+  .careers p{ color: var(--steel-light); margin-top: 18px; max-width: 48ch; }
+  @media (max-width: 800px){ .careers-grid, .about-grid, .hero-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--graphite);
+    color: var(--steel-light);
+    padding: 40px 0;
+    font-size: 0.85rem;
+  }
+  .footer-grid{
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  }
+  footer a{ color: var(--steel-light); text-decoration: none; }
+  footer a:hover{ color: var(--plate); }
+
+  @media (max-width: 640px){
+    .wrap{ padding: 0 20px; }
+    nav{ display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark"><span>RM</span></div>
+      RIDGELINE MACHINERY CO.
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#team">The Crew</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#careers">Careers</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker-tag">EST. 1987 — GRANITE FALLS, MN</span>
+      <h1>Every machine has a name behind it.</h1>
+      <p class="lede">We build and service heavy equipment for crews who can't afford downtime. Thirty-eight years in, our machines still outlast their warranties — because the people running the shop floor won't let them do otherwise.</p>
+      <div class="hero-ctas">
+        <a href="#team" class="btn btn-primary">Meet the crew</a>
+        <a href="#careers" class="btn btn-ghost">See open positions</a>
+      </div>
+    </div>
+    <div class="roster">
+      <div class="roster-head">
+        <span class="roster-title">Shop Floor — Shift A</span>
+        <span class="mono">09/09</span>
+      </div>
+      <div class="roster-row"><span class="id">EMP-014</span><span class="role">Lead Fabricator</span><span class="yrs">14 YRS</span></div>
+      <div class="roster-row"><span class="id">EMP-027</span><span class="role">Hydraulics Tech</span><span class="yrs">9 YRS</span></div>
+      <div class="roster-row"><span class="id">EMP-003</span><span class="role">Line Foreman</span><span class="yrs">22 YRS</span></div>
+      <div class="roster-row"><span class="id">EMP-041</span><span class="role">Field Mechanic</span><span class="yrs">6 YRS</span></div>
+      <div class="roster-row"><span class="id">EMP-019</span><span class="role">Quality Inspector</span><span class="yrs">11 YRS</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Built by the people who use it</h2>
+      <p class="section-intro">Every welder, mechanic, and machinist on our floor has run equipment in the field before they ever built it. That's not a hiring policy — it's just who was left when the last recession thinned everyone else out.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>Ridgeline started in a single quonset hut outside Granite Falls, fixing combines for neighboring farms during harvest. When the equipment got bigger, so did we — but we never stopped hiring people who'd already spent a decade in a cab or under a machine.</p>
+        <p>Today our floor runs forty-two people across fabrication, hydraulics, electrical, and field service. Most came from operating the exact equipment they now build. That's the whole business model: nobody designs a fix for a problem they haven't personally cursed at.</p>
+      </div>
+      <div>
+        <div class="stat-plate">
+          <div class="stat-row"><span class="stat-num">42</span><span class="stat-label">People on the floor, across three shifts</span></div>
+        </div>
+        <div class="stat-plate">
+          <div class="stat-row"><span class="stat-num">11.6</span><span class="stat-label">Average years of service per employee</span></div>
+        </div>
+        <div class="stat-plate">
+          <div class="stat-row"><span class="stat-num">3</span><span class="stat-label">Employees who started as customers</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="background: var(--concrete-dark);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>The crew</h2>
+      <p class="section-intro">A few of the people you'll actually talk to when something breaks down at 6am.</p>
+    </div>
+    <div class="team-grid">
+      <div class="plate-card">
+        <div class="plate-id">EMP-003 · SINCE 2003</div>
+        <div class="plate-name">Dale Kowalczyk</div>
+        <div class="plate-role">Line Foreman</div>
+        <div class="plate-quote">"I can true a beam by eye before the laser confirms it. The laser's mostly there for the paperwork."</div>
+        <div class="plate-meta"><span>FABRICATION</span><span>22 YRS</span></div>
+      </div>
+      <div class="plate-card">
+        <div class="plate-id">EMP-014 · SINCE 2010</div>
+        <div class="plate-name">Renata Osei</div>
+        <div class="plate-role">Lead Fabricator</div>
+        <div class="plate-quote">"Ran a fleet of loaders for nine years before I ever picked up a torch. I know exactly what breaks first."</div>
+        <div class="plate-meta"><span>FABRICATION</span><span>14 YRS</span></div>
+      </div>
+      <div class="plate-card">
+        <div class="plate-id">EMP-027 · SINCE 2015</div>
+        <div class="plate-name">Marcus Vue</div>
+        <div class="plate-role">Hydraulics Tech</div>
+        <div class="plate-quote">"Ninety percent of hydraulic failures are a bad seal, not a bad pump. People don't want to hear that."</div>
+        <div class="plate-meta"><span>HYDRAULICS</span><span>9 YRS</span></div>
+      </div>
+      <div class="plate-card">
+        <div class="plate-id">EMP-041 · SINCE 2018</div>
+        <div class="plate-name">Bethany Rourke</div>
+        <div class="plate-role">Field Mechanic</div>
+        <div class="plate-quote">"Half my job is the repair. The other half is talking a farmer through why it's going to take three days, not one."</div>
+        <div class="plate-meta"><span>FIELD SERVICE</span><span>6 YRS</span></div>
+      </div>
+      <div class="plate-card">
+        <div class="plate-id">EMP-008 · SINCE 2008</div>
+        <div class="plate-name">Sam Whitefeather</div>
+        <div class="plate-role">Electrical Systems</div>
+        <div class="plate-quote">"Modern equipment has more wiring than a house. I've wired both, and I trust the equipment more."</div>
+        <div class="plate-meta"><span>ELECTRICAL</span><span>17 YRS</span></div>
+      </div>
+      <div class="plate-card">
+        <div class="plate-id">EMP-019 · SINCE 2013</div>
+        <div class="plate-name">Priya Nadar</div>
+        <div class="plate-role">Quality Inspector</div>
+        <div class="plate-quote">"I fail about one in eight units on first pass. Nobody's happy about it in the moment. Everyone's happy in the field."</div>
+        <div class="plate-meta"><span>QUALITY</span><span>11 YRS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fleet">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>What we build and service</h2>
+      <p class="section-intro">Full fabrication for a few product lines, and full service for anything with an engine and a hydraulic line.</p>
+    </div>
+    <table class="spec-table">
+      <thead>
+        <tr>
+          <th>Equipment</th>
+          <th>Capacity range</th>
+          <th>Built / serviced</th>
+          <th>Typical turnaround</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="equip">Wheel loaders</td>
+          <td class="num">2.5 – 6.0 yd³</td>
+          <td>Both</td>
+          <td class="num">3–5 days</td>
+        </tr>
+        <tr>
+          <td class="equip">Excavators</td>
+          <td class="num">12 – 45 ton</td>
+          <td>Service only</td>
+          <td class="num">2–4 days</td>
+        </tr>
+        <tr>
+          <td class="equip">Grain augers</td>
+          <td class="num">8" – 13" bore</td>
+          <td>Both</td>
+          <td class="num">1–2 days</td>
+        </tr>
+        <tr>
+          <td class="equip">Hydraulic dozers</td>
+          <td class="num">80 – 220 HP</td>
+          <td>Service only</td>
+          <td class="num">4–7 days</td>
+        </tr>
+        <tr>
+          <td class="equip">Custom fab / attachments</td>
+          <td class="num">To spec</td>
+          <td>Built only</td>
+          <td class="num">Varies</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="careers" id="careers">
+  <div class="wrap careers-grid">
+    <div>
+      <h2>We hire the field, not just the floor.</h2>
+      <p>If you've operated it, fixed it roadside, or cursed at it in a cab, you already have the qualification we care about most. We're currently hiring a field mechanic and a second-shift welder.</p>
+      <div class="hero-ctas" style="margin-top: 28px;">
+        <a href="#" class="btn btn-primary">View open positions</a>
+      </div>
+    </div>
+    <div class="roster" style="animation:none; opacity:1;">
+      <div class="roster-head">
+        <span class="roster-title">Open Positions</span>
+        <span class="mono">2</span>
+      </div>
+      <div class="roster-row"><span class="id">REQ-118</span><span class="role">Field Mechanic</span><span class="yrs">FULL-TIME</span></div>
+      <div class="roster-row"><span class="id">REQ-121</span><span class="role">Welder, 2nd Shift</span><span class="yrs">FULL-TIME</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand" style="color: var(--plate); margin-bottom: 8px;">RIDGELINE MACHINERY CO.</div>
+      <div>412 Foundry Road, Granite Falls, MN</div>
+    </div>
+    <div>
+      <div>(320) 555-0148</div>
+      <div><a href="mailto:shop@ridgelinemachinery.com">shop@ridgelinemachinery.com</a></div>
+    </div>
+    <div>© 1987–2026 Ridgeline Machinery Co.</div>
+  </div>
+</footer>
+
+</body>
+</html>
